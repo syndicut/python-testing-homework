@@ -31,7 +31,6 @@ class RegistrationData(UserData, total=False):
     password2: str
 
 
-@final
 class RegistrationDataFactory(Protocol):
     """User data factory protocol."""
 
@@ -60,7 +59,7 @@ def registration_data_factory(faker_seed: int) -> RegistrationDataFactory:
             }, iterations=1,
         )
         return {
-            **schema.create()[0],  # type: ignore[misc]
+            **schema.create()[0],  # type: ignore[typeddict-item]
             **{'password1': password, 'password2': password},
             **fields,
         }
